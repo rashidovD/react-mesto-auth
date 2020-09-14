@@ -1,0 +1,35 @@
+@import url('./__email/header__email.css');
+@import url('./__link/header__link.css');
+
+.header {
+  border-bottom: 1px solid #a5a5a5;
+  max-width: 882px;
+  margin: auto;
+  display: flex;
+}
+
+
+@media screen and (max-width: 900px) {
+  .header {
+    max-width: 672px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    max-width: 460px;
+  }
+}
+
+
+@media screen and (max-width: 490px) {
+  .header {
+    max-width: 324px;
+  }
+}
+
+/* @media screen and (max-width: 374px) {
+  .header {
+    display: block;
+  }
+} */

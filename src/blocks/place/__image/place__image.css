@@ -1,0 +1,19 @@
+.place__image {
+  border-radius: 10px 10px 0px 0px;
+  object-fit: cover;
+  object-position: top;
+  width: 282px;
+  height: 282px;
+  display: block;
+  cursor: pointer;
+}
+
+/* .place__image::after {
+  content: '';
+  display: block;
+  width: 282px;
+  height: 282px;
+  background-color: rgba(0, 0, 0, .3);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+} */

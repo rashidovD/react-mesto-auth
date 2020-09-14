@@ -1,0 +1,23 @@
+.register__input {
+  border: 0;
+  border-bottom: 2px solid #ccc;
+  padding: 0;
+  margin-bottom: 30px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  min-height: 28px;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+}
+
+.register__input:focus {
+  background: rgba(156, 154, 154, 0.171);
+}
+
+.register__input::placeholder {
+  color: rgb(221, 221, 221);
+  font-weight: 100;
+}
