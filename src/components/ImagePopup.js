@@ -1,10 +1,6 @@
 import React from 'react';
 
 class ImagePopup extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className={this.props.card ? "popup popup_type_img popup_opened" : "popup popup_type_img"}>

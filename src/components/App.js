@@ -223,6 +223,7 @@ class App extends React.Component {
             handleRedirect={this.handleRedirect}
           />
           <Switch>
+          {this.state.isLoading ? <Spinner /> :
             <ProtectedRoute
               exact path="/"
               loggedIn={this.state.loggedIn}
@@ -235,7 +236,7 @@ class App extends React.Component {
               onCardDelete={this.handleCardDelete}
               component={Main}
             />
-
+          }
             <Route path="/signin">
               <Login onLogin={this.onLogin} handleRedirect={this.handleRedirect} />
             </Route>
@@ -247,15 +248,6 @@ class App extends React.Component {
             <Route>
               <Redirect to={`/${this.state.loggedIn ? '' : 'signin'}`} />
             </Route>
-            {/* {this.state.isLoading ? <Spinner /> : this.state.currentUser && <Main
-              onEditProfile={this.handleEditProfileClick}
-              onAddPlace={this.handleAddPlaceClick}
-              onEditAvatar={this.handleEditAvatarClick}
-              onCardClick={this.handleCardClick}
-              cards={this.state.cards}
-              onCardLike={this.handleCardLike}
-              onCardDelete={this.handleCardDelete}
-            />} */}
           </Switch>
 
           <Footer />
