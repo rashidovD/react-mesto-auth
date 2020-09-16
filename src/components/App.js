@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
@@ -250,6 +250,10 @@ class App extends React.Component {
 
             <Route path="/signup">
               <Register onRegister={this.onRegister} handleRedirect={this.handleRedirect} />
+            </Route>
+
+            <Route>
+              <Redirect to={`/${this.state.loggedIn ? '' : 'signin'}`} />
             </Route>
 
           </Switch>
