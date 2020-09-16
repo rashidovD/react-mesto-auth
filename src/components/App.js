@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
@@ -8,9 +8,9 @@ import ImagePopup from './ImagePopup';
 import AddPlacePopup from './AddPlacePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import EditProfilePopup from './EditProfilePopup';
-import api from '../utils/Api';
+import api from '../utils/api';
 import InfoTooltip from './InfoTooltip';
-import Auth from '../utils/Auth';
+import Auth from '../utils/auth';
 import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
@@ -23,6 +23,7 @@ class App extends React.Component {
       isEditProfilePopupOPen: false,
       isAddPlacePopupOpen: false,
       isEditAvatarPopupOpen: false,
+      isTooltipPopupOpen: false,
       isLoading: false,
       selectedCard: false,
       currentUser: null,
@@ -33,7 +34,8 @@ class App extends React.Component {
       loggedIn: false,
       email: null,
       loginPageActive: true,
-      message: null
+      // message: null
+      isSuccess: false
     }
   }
 
@@ -56,7 +58,7 @@ class App extends React.Component {
   tokenCheck = () => {
     if(localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
-      Auth.getContent(token)
+      Auth.checkToken(token)
         .then(res => {
           if (res) {
             this.setState({
@@ -66,6 +68,8 @@ class App extends React.Component {
             }, () => {
               this.props.history.push('/');
             });
+          } else {
+            localStorage.removeItem('token');
           }
         });
     }
@@ -84,13 +88,15 @@ class App extends React.Component {
       .then(res => {
         if (res) {
           this.setState({
-            message: 'Вы успешно зарегистрировались!'
+            isTooltipPopupOpen: true,
+            isSuccess: true
           }, () => {
             this.props.history.push('/signin');
           })
         } else {
           this.setState({
-            message: 'Что-то пошло не так! Попробуйте еще раз.'
+            isTooltipPopupOpen: true,
+            isSuccess: false
           })
         }
       });
@@ -142,6 +148,7 @@ class App extends React.Component {
   closeAllPopups = () => {
     this.setState({
       isEditProfilePopupOPen: false,
+      isTooltipPopupOpen: false,
       isAddPlacePopupOpen: false,
       isEditAvatarPopupOpen: false,
       selectedCard: false,
@@ -149,7 +156,7 @@ class App extends React.Component {
         link: null,
         name: null
       },
-      message: null
+      // message: null
     })
   }
 
@@ -245,9 +252,6 @@ class App extends React.Component {
               <Register onRegister={this.onRegister} handleRedirect={this.handleRedirect} />
             </Route>
 
-            <Route>
-              <Redirect to={`/${this.state.loggedIn ? '' : 'signin'}`} />
-            </Route>
           </Switch>
 
           <Footer />
@@ -279,7 +283,8 @@ class App extends React.Component {
           <InfoTooltip
             isOpen={this.state.isTooltipPopupOpen}
             onclose={this.closeAllPopups}
-            message={this.state.message}
+            // message={this.state.message}
+            isSuccess={this.state.isSuccess}
           />
 
         </CurrentUserContext.Provider>

@@ -54,7 +54,7 @@ class Auth {
         .catch(error => console.log(error.message));
   }
 
-  getContent(token) {
+  checkToken(token) {
     return fetch(this._baseAuthURL + '/users/me', {
       method: 'GET',
       headers: {
