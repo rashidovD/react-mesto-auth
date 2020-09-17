@@ -34,7 +34,6 @@ class App extends React.Component {
       loggedIn: false,
       email: null,
       loginPageActive: true,
-      // message: null
       isSuccess: false
     }
   }
@@ -156,7 +155,6 @@ class App extends React.Component {
         link: null,
         name: null
       },
-      // message: null
     })
   }
 
@@ -287,7 +285,6 @@ class App extends React.Component {
           <InfoTooltip
             isOpen={this.state.isTooltipPopupOpen}
             onclose={this.closeAllPopups}
-            // message={this.state.message}
             isSuccess={this.state.isSuccess}
           />
 

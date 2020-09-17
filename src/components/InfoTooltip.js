@@ -4,7 +4,7 @@ import errorImg from '../images/error.svg'
 
 class InfoTooltip extends React.Component {
 
-  render() {console.log(this.props);
+  render() {
     return (
       <div className={`popup popup_type_tooltip ${(this.props.isOpen) ? 'popup_opened' : ''}`}>
         <div className="popup__container">
